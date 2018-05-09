@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.springframework</groupId>
+    <artifactId>MyArtifact_Maven</artifactId>
+    <packaging>jar</packaging>
+    <version>0.0.1</version>
+	<name>My First Artifact Generated With Maven.</name>
+	<url></url>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+<dependencies>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+</dependencies>
+
+    <build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<directory>target</directory>
+		<outputDirectory>target/classes</outputDirectory>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<testOutputDirectory>target/test-classes</testOutputDirectory>
+        
+		<plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                    
+implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    
+<mainClass>hello.HelloWorld</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+<!--
+Keywords for POM file: https://maven.apache.org/ref/3.5.3/maven-model/maven.html
+
+groupId: Domain name dell'azienda.
+artifactId: Base del nome dell'artefatto generato.
+packaging: Tipo di archivio da generare che conterrà l'artefatto compilato (e.g. JAR, WAR, EAR, etc.)
+version: Versione dell'artefatoo generato dal progetto Maven. Per convenzione, posso aggiungere la parola SNAPSHOT per indicare che il progetto è ancora in development.
+name: Nome utilizzato per il progetto. Il valore è usato da Maven nella generazione della documentazione del progetto.
+url: URL del sito del progetto, usato nella creazione della documentazione.
+description: Descrizione di base del progetto, usata per la creazione della documentazione.
+dependencies: Contiene la definizione delle dipendenze del progetto. Le librerie vengono automaticamente scaricate al momento della compilazione.
+dependency: Contiene indicazioni su una singola dipendenza.
+
+build: Indicazioni necessarie per compilare il progetto. Principaly tag utilizzati:
+
+directory: Conterrà l'artefatto compilato. Di default è ./target.
+outputDirectory: Conterrà i file .class compilati. Di default è: ./target/classes
+finalName: Nome dell'artefatto generato senza estenzione. Di default è: ${project.artifactId}-${project.version}.
+testOutputDirectory: Conterrà i .class dei file java di test. Di default è: ./target/test-classes.
+sourceDirectory: Root folder dei sorgent java. Di default è: ./src/main/java.
+testSourceDirectory: Root folder dei sorgenti java di test. Di default è: ./src/test/java.
+
+executions: Attività da eseguire durante il building.
+
+
+
+-->
